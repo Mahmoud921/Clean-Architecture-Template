@@ -1,7 +1,21 @@
 # Clean Architecture Template (.NET)
+![.NET](https://img.shields.io/badge/.NET-10.0-blue)
+![Architecture](https://img.shields.io/badge/Architecture-Clean-green)
+![CQRS](https://img.shields.io/badge/Pattern-CQRS-orange)
+![License](https://img.shields.io/badge/License-MIT-purple)
 
 A professional, production-ready template for .NET applications using **Clean Architecture** (Onion Architecture). Designed to help you start new projects quickly with clean, maintainable, and scalable code.
 
+
+## 🎯 Why This Template?
+This template provides a scalable and maintainable foundation for building modern .NET applications using Clean Architecture principles.
+
+It helps developers:
+- Separate concerns clearly
+- Build highly testable systems
+- Apply CQRS and SOLID principles
+- Reduce boilerplate code
+- Start production-ready projects quickly
 ---
 
 ## ✨ Features
@@ -10,13 +24,20 @@ A professional, production-ready template for .NET applications using **Clean Ar
 - CQRS pattern with **MediatR**
 - Domain-Driven Design principles
 - Repository Pattern with EF Core
+- Generic Repository
 - FluentValidation for request validation
+- Result Pattern
+- Global API Response Wrapper
+- Custom Exception Handling Middleware
 - AutoMapper for object mapping
 - Global exception handling
 - Centralized logging
 - Highly testable and extensible
 - Ready for future microservices or multi-tenant architecture
 - JWT Authentication
+- Scalable Folder Structure
+- Production-Ready API Setup
+- Extensible & Highly Testable
 
 ---
 
@@ -34,7 +55,10 @@ Architecture/
 │
 ├── Architecture.Application/                  # Application Layer
 │   ├── Common/
+        ├── Response/
+        ├── Results/
 │   ├── DTOs/
+    ├── Exceptions/
 │   ├── Features/                              # Commands, Queries & Handlers
 │   ├── Behaviors/                             # MediatR Pipeline Behaviors
 │   ├── Mappings/                              # AutoMapper Profiles
@@ -47,14 +71,20 @@ Architecture/
 │   ├── Errors/
 │   ├── Events/
 │   ├── Interfaces/
+        ├── Repository/
+        ├── IUnitOfWorks.cs
 │   └── Primitives/
+        ├── BaseEntity.cs
+        ├── AuditableEntity.cs
 │
 └── Architecture.Infrastructure/               # Infrastructure Layer
     ├── Persistence/
     │   ├── Migrations/
     │   ├── DataSeeder/
     │   ├── Repository/
-    │   └── AppDbContext.cs
+    │   ├── AppDbContext.cs
+    |   ├── UnitOfWorks
+
     ├── Logging/
 
 ```
@@ -77,6 +107,15 @@ Architecture/
 5. Repository accesses database
 6. Response returned to client
 ---
+### Standard API Response 
+```json
+{
+  "success": true,
+  "message": "Success",
+  "data": {},
+  "statusCode": 200
+}
+```
 
 ## 🚀 Getting Started
 
@@ -106,4 +145,7 @@ dotnet ef database update --startup-project ../Architecture.API
 cd ../Architecture.API
 dotnet run
 ```
+## Contributing
+Contributions, issues, and feature requests are welcome.
+Feel free to fork the repository and submit pull requests.
 
