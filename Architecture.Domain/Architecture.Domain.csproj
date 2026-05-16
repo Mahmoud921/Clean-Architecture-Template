@@ -13,7 +13,6 @@
     <Folder Include="Events\" />
     <Folder Include="Interfaces\Repository\" />
     <Folder Include="ValueObjects\" />
-    <Folder Include="Primatives\" />
   </ItemGroup>
 
 </Project>

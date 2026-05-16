@@ -1,3 +1,5 @@
+using Architecture.API.Middlewares;
+using Architecture.Domain.Interfaces;
 using Architecture.Infrastrucure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Register UnitOfWork for dependency injection
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,6 +30,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 
